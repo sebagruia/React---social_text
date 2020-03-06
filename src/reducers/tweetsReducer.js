@@ -1,6 +1,10 @@
 import {RECEIVE_TWEETS} from '../actions/tweets';
 
-export const tweetsReducers = (state={}, action={})=>{
+const intialStateTweets = {
+    tweets:{}
+}
+
+export const tweetsReducers = (state=intialStateTweets, action={})=>{
     switch (action.type){
         case RECEIVE_TWEETS:
             return {...state, tweets:action.payload};
