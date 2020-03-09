@@ -2,17 +2,19 @@ import React, { Component } from 'react'
 import {connect} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import Dashboard from '../components/Dashboard';
+import LoadingBar from 'react-redux-loading';
+import NewTweet from '../components/NewTweet';
 
-const mapStateToProps = ({authed})=>{
-  // const authed = state.authedReducers.authed;
+const mapStateToProps = (state)=>{
+  const authedUser = state.authedReducers.authed;
   return {
-    loading:authed === null
+    loading:authedUser === null
   }
 }
 
-const mapDispachToProps = (dispach)=>{
+const mapDispachToProps = (dispatch)=>{
   return{
-    handleInitialData: ()=>dispach(handleInitialData())
+    handleInitialData: ()=>dispatch(handleInitialData())
   }
 }
 
@@ -24,9 +26,10 @@ componentDidMount (){
   render() {
     return (
       <div>
+        <LoadingBar />
         {
           this.props.loading === true ? null
-          : <Dashboard />
+          : <NewTweet />
         }
       </div>
     )
