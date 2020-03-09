@@ -1,4 +1,4 @@
-import {RECEIVE_TWEETS, TOGGLE_TWEET} from '../actions/tweets';
+import {RECEIVE_TWEETS, TOGGLE_TWEET, ADD_TWEET } from '../actions/tweets';
 
 const intialStateTweets = {
     tweets:{}
@@ -21,6 +21,12 @@ export const tweetsReducers = (state=intialStateTweets, action={})=>{
                     ? state[action.id].likes.filter((uid)=>uid!==action.authedUser)
                     : state[action.id].likes.concat([action.authedUser])
             }};
+        
+        case ADD_TWEET:
+            const{tweet} = action;
+            return{
+                
+            }
         default: 
             return state;
     }
